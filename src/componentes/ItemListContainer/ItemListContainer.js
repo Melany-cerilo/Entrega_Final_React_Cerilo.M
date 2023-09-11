@@ -1,25 +1,44 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
+import React, { useEffect, useState } from "react";
 
-import "./ItemListContainer.css";
+import { mockFetch } from "../../utils/mockFetch";
+import Spinner from "react-bootstrap/Spinner";
+import ItemList from "./ItemList/ItemList";
+import { useParams } from "react-router-dom";
 
-const ItemListContainer = (props) => {
+const ItemListContainer = () => {
+  const [mangas, setMangas] = useState([]);
+  const [cargando, setCargando] = useState(true);
+  const { categoriaId } = useParams();
+
+  useEffect(() => {
+    if (categoriaId) {
+      mockFetch()
+        .then((data) =>
+          setMangas(data.filter((mangas) => categoriaId === mangas.categoria))
+        )
+        .finally(() => setCargando(false))
+        .catch((error) => console.log(error));
+    } else {
+      mockFetch()
+        .then((data) => setMangas(data))
+        .finally(() => setCargando(false))
+        .catch((error) => console.log(error));
+    }
+  }, [categoriaId]);
+
   return (
     <>
-      <Card>
-        <Card.ImgOverlay>
-          <Card.Title>
-            <h1 className="display-1 text-center margen-h1  fw-medium">
-              {props.greeting}
-            </h1>
-          </Card.Title>
-        </Card.ImgOverlay>
-      </Card>
-      <img
-        src="https://i.ibb.co/rfb4Vv4/miheroacademy.jpg"
-        className="img-fluid w-100 margen"
-        alt="M_H_academy"
-      />
+      {cargando ? (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+          <Spinner
+            animation="grow"
+            variant="danger"
+            style={{ width: "100px", height: "100px" }}
+          />
+        </div>
+      ) : (
+        <ItemList arrayMangas={mangas} />
+      )}
     </>
   );
 };

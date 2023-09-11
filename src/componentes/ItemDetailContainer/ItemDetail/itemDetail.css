@@ -1,0 +1,15 @@
+.product-detail {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: space-between; /* Distribuye el espacio horizontalmente */
+  padding: 20px; /* Espacio alrededor del contenido */
+}
+
+.product-image img {
+  max-width: 100%; /* Ajusta el tamaño máximo de la imagen */
+}
+
+.product-details {
+  flex-grow: 1; /* Ocupa todo el espacio restante */
+  padding-left: 20px; /* Espacio a la izquierda de los detalles */
+}

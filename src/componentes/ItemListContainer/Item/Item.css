@@ -1,0 +1,6 @@
+.imagen-personalizada {
+  width: 250px !important; /* El tamaño que desees */
+  height: 350px !important; /* El tamaño que desees */
+  object-fit: cover; /* Para recortar las imágenes si no tienen el mismo aspect ratio */
+  margin-top: 10px;
+}
