@@ -7,7 +7,7 @@ import "./Item.css";
 
 const Item = (manga) => {
   const add = (contador) => {
-    console.log("Agregados al carrito:", contador);
+    alert("Agregados al carrito: " + contador);
   };
 
   return (
