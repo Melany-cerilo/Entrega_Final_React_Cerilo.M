@@ -6,8 +6,8 @@ import ItemCount from "../../ItemCount/ItemCount";
 import "./Item.css";
 
 const Item = (manga) => {
-  const add = () => {
-    alert("agregado");
+  const add = (contador) => {
+    console.log("Agregados al carrito:", contador);
   };
 
   return (

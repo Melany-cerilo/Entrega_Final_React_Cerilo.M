@@ -15,7 +15,9 @@ const ItemCount = ({ valorInicial, stock, add }) => {
       setContador(contador - 1);
     }
   };
-
+  const onAdd = () => {
+    add(contador);
+  };
   return (
     <ButtonGroup aria-label="Basic example">
       <Button variant="secondary" onClick={sumaContador}>
@@ -25,7 +27,7 @@ const ItemCount = ({ valorInicial, stock, add }) => {
       <Button variant="secondary" onClick={restaContador}>
         - 1
       </Button>
-      <Button variant="secondary" onClick={add}>
+      <Button variant="secondary" onClick={onAdd}>
         ADD TO 🛒
       </Button>
     </ButtonGroup>

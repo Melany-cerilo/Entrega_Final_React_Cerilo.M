@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -26,28 +26,60 @@ const NavBar = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link
+              <NavLink
                 as={Link}
+                className={({ isActive }) =>
+                  isActive ? "btn btn-secondary" : "nav-link"
+                }
                 to="/categoria/Comedia"
-                className={({ isActive }) => (isActive ? "" : "")}
               >
                 Comedia
-              </Nav.Link>
-              <Nav.Link as={Link} to="/categoria/Ciencia ficción">
+              </NavLink>
+              <NavLink
+                as={Link}
+                className={({ isActive }) =>
+                  isActive ? "btn btn-secondary" : "nav-link"
+                }
+                to="/categoria/Ciencia ficción"
+              >
                 Ciencia Ficción
-              </Nav.Link>
-              <Nav.Link as={Link} to="/categoria/Acción">
+              </NavLink>
+              <NavLink
+                as={Link}
+                to="/categoria/Acción"
+                className={({ isActive }) =>
+                  isActive ? "btn btn-secondary" : "nav-link"
+                }
+              >
                 Acción
-              </Nav.Link>
-              <Nav.Link as={Link} to="/categoria/Shonen">
+              </NavLink>
+              <NavLink
+                as={Link}
+                to="/categoria/Shonen"
+                className={({ isActive }) =>
+                  isActive ? "btn btn-secondary" : "nav-link"
+                }
+              >
                 Shonen
-              </Nav.Link>
-              <Nav.Link as={Link} to="/categoria/Fantasia">
+              </NavLink>
+              <NavLink
+                as={Link}
+                to="/categoria/Fantasia"
+                className={({ isActive }) =>
+                  isActive ? "btn btn-secondary" : "nav-link"
+                }
+              >
                 Fantasia
-              </Nav.Link>
-              <Nav.Link as={Link} to="/categoria/Terror">
+              </NavLink>
+              <NavLink
+                as={Link}
+                to="/categoria/Terror"
+                className={({ isActive }) =>
+                  isActive ? "btn btn-secondary" : "nav-link"
+                }
+              >
                 Terror
-              </Nav.Link>
+              </NavLink>
             </Nav>
           </Navbar.Collapse>
 

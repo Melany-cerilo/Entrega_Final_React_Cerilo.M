@@ -11,7 +11,7 @@ const ItemDetailContainer = () => {
     mockFetch(Number(mangaId))
       .then((resp) => setMangaDetail(resp))
       .catch((error) => console.log(error));
-  }, []);
+  }, [mangaId]);
   return <ItemDetail mangaDetail={mangaDetail} />;
 };
 
