@@ -1,11 +1,25 @@
-#Creadora del proyecto: Melany Cerilo
-##Nombre de la pagina: MangaMania
+Creadora del proyecto: Melany Cerilo
+
+
+Nombre de la pagina: MangaMania
+
+DEPLOY: https://65208f2cc73111066abd85fc--roaring-basbousa-086559.netlify.app/
+
+
+VIDEO FUNCIONAL: https://www.loom.com/share/e7de42e948ab492ca5b16b286c6215ff?sid=438334b5-546b-48ce-bf95-233a8b6b71a9
 
 Librerias externas :
 -bootstrap | V5.3.1 | Utilizado para dar estilo a nuestra aplicación.
+
+
 -react-bootstrap | V2.8.0 | Proporciona componentes estilizados para la interfaz de usuario.
+
+
 -react-router-dom| V6.15.0 | Utilizado para el enrutamiento de la aplicación.
+
+
 -sweetAlert | V11.7.31| Proporciona alertas con estilos personalizados.
+
 
 -Almacenamiento de imagenes: imgbb (https://mel-cerilo.imgbb.com/)
 
