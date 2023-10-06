@@ -25,10 +25,18 @@ Librerias externas :
 
 Ejecución del proyecto:
 -Clonar el proyecto
+
 -cd mel_ecommerce
+
 -npm i
+
 -npm start (local)
+
+
+
+
 Funcionalidad:
+
 Inicio de la app: Desde el momento en que un usuario ingresa a la página principal, se sumerge en un mundo de manga. Aquí puede explorar todos los mangas disponibles en nuestra tienda.
 
 Navegación por Categorías: Si el usuario tiene preferencias específicas, puede navegar fácilmente por categorías, lo que facilita la búsqueda de los mangas que le interesan.
