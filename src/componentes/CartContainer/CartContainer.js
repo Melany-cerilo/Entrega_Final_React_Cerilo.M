@@ -6,8 +6,11 @@ import Form from "../form/Form";
 import "./CartContainer.css";
 const CartContainer = () => {
   const [id, setId] = useState();
-  const { listaCarrito, vaciarCarrito, precioTotal } = useCartContext();
+  const { cartList, emptyCart, totalPrice } = useCartContext();
 
+  //cuando haya id es porque se acaba de realizar una compra. por lo tanto muestro cartel con ID GENERADO.
+  //si carrito no tiene mangas muestro cartel CARRITO VACIO.
+  //si carrito esta lleno, se lista la elección del usuario
   return (
     <>
       {id !== undefined && (
@@ -16,7 +19,7 @@ const CartContainer = () => {
         </h3>
       )}
 
-      {listaCarrito.length > 0 ? (
+      {cartList.length > 0 ? (
         <div>
           <div className="box-cart">
             <table className="table ">
@@ -30,17 +33,19 @@ const CartContainer = () => {
                 </tr>
               </thead>
               <tbody>
-                {listaCarrito.map((manga) => (
+                {cartList.map((manga) => (
                   <CartList key={manga.id} manga={manga} />
                 ))}
               </tbody>
             </table>
-            <h3>Tu total a pagar es: ${precioTotal()} </h3>
-
-            <button
-              className="btn btn-outline-dark center"
-              onClick={vaciarCarrito}
+            <h3
+              className="custom-font
+            "
             >
+              Tu total a pagar es: ${totalPrice()}{" "}
+            </h3>
+
+            <button className="btn btn-outline-dark center" onClick={emptyCart}>
               Vaciar carrito
             </button>
           </div>

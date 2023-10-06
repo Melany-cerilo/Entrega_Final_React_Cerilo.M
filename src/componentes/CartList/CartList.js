@@ -2,11 +2,10 @@ import React from "react";
 import { useCartContext } from "../../context/CartContext";
 import "./CartList.css";
 const CartList = ({ manga }) => {
-  const { eliminarSeleccionado } = useCartContext();
-
+  const { deleteSelected } = useCartContext();
   return (
     <>
-      <tr key={manga.id}>
+      <tr key={manga.id} className="custom-list">
         <td>
           <img src={manga.imagen} alt="imagen" className="cart-img" />{" "}
         </td>
@@ -14,7 +13,7 @@ const CartList = ({ manga }) => {
         <td>${manga.precio}</td>
         <td>{manga.quantity}</td>
         <td>
-          <button onClick={() => eliminarSeleccionado(manga.id)}>❌</button>
+          <button onClick={() => deleteSelected(manga.id)}>❌</button>
         </td>
       </tr>
     </>

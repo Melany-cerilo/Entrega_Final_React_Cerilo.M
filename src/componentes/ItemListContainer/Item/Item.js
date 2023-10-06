@@ -9,19 +9,20 @@ import ItemCount from "../../ItemCount/ItemCount";
 import "./Item.css";
 
 const Item = (manga) => {
-  const { agregarManga } = useCartContext();
+  const { addManga } = useCartContext();
 
-  const add = (contador, stock) => {
-    if (agregarManga({ ...manga.unidadManga, quantity: contador }, stock)) {
+  //función para llamar al agregado del manga y mostrar el resultado ok, o no ok.
+  const add = (counter, stock) => {
+    if (addManga({ ...manga.mangaUnit, quantity: counter }, stock)) {
       Swal.fire({
         icon: "success",
-        title: `Agregado al carrito: ${manga.unidadManga.titulo}`,
-        text: `Unidades:    ${contador} `,
+        title: `Agregado al carrito: ${manga.mangaUnit.titulo}`,
+        text: `Unidades:    ${counter} `,
       });
     } else {
       Swal.fire({
         icon: "error",
-        title: `No hay stock de: ${manga.unidadManga.titulo}`,
+        title: `No hay stock de: ${manga.mangaUnit.titulo}`,
         text: `Ya sumaste todo al carrito`,
       });
     }
@@ -35,21 +36,21 @@ const Item = (manga) => {
       <Card.Img
         className="imagen-personalizada"
         variant="top"
-        src={manga.unidadManga.imagen}
+        src={manga.mangaUnit.imagen}
       />
       <Card.Body>
-        <Card.Title>{manga.unidadManga.titulo}</Card.Title>
-        <Card.Text>Precio: ${manga.unidadManga.precio}</Card.Text>
+        <Card.Title>{manga.mangaUnit.titulo}</Card.Title>
+        <Card.Text>Precio: ${manga.mangaUnit.precio}</Card.Text>
         <Button
           as={Link}
-          to={`/detalle/${manga.unidadManga.id}`}
+          to={`/item/${manga.mangaUnit.id}`}
           variant="secondary"
           className="mb-2"
         >
           Detalle
         </Button>
 
-        <ItemCount valorInicial={1} stock={manga.unidadManga.stock} add={add} />
+        <ItemCount initialValue={1} stock={manga.mangaUnit.stock} add={add} />
       </Card.Body>
     </Card>
   );

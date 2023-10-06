@@ -31,7 +31,7 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   isActive ? "btn btn-secondary" : "nav-link"
                 }
-                to="/categoria/Comedia"
+                to="/category/Comedia"
               >
                 Comedia
               </NavLink>
@@ -40,13 +40,13 @@ const NavBar = () => {
                 className={({ isActive }) =>
                   isActive ? "btn btn-secondary" : "nav-link"
                 }
-                to="/categoria/Ciencia ficción"
+                to="/category/Ciencia ficción"
               >
                 Ciencia Ficción
               </NavLink>
               <NavLink
                 as={Link}
-                to="/categoria/Acción"
+                to="/category/Acción"
                 className={({ isActive }) =>
                   isActive ? "btn btn-secondary" : "nav-link"
                 }
@@ -55,7 +55,7 @@ const NavBar = () => {
               </NavLink>
               <NavLink
                 as={Link}
-                to="/categoria/Shonen"
+                to="/category/Shonen"
                 className={({ isActive }) =>
                   isActive ? "btn btn-secondary" : "nav-link"
                 }
@@ -64,7 +64,7 @@ const NavBar = () => {
               </NavLink>
               <NavLink
                 as={Link}
-                to="/categoria/Fantasia"
+                to="/category/Fantasia"
                 className={({ isActive }) =>
                   isActive ? "btn btn-secondary" : "nav-link"
                 }
@@ -73,7 +73,7 @@ const NavBar = () => {
               </NavLink>
               <NavLink
                 as={Link}
-                to="/categoria/Terror"
+                to="/category/Terror"
                 className={({ isActive }) =>
                   isActive ? "btn btn-secondary" : "nav-link"
                 }
@@ -83,7 +83,7 @@ const NavBar = () => {
             </Nav>
           </Navbar.Collapse>
 
-          <Link to="/cart">
+          <Link style={{ textDecoration: "none", color: "black" }} to="/cart">
             <Cartwidget />
           </Link>
         </Container>

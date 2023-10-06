@@ -14,28 +14,30 @@ import Greeting from "../Greeting/Greeting";
 
 const ItemListContainer = () => {
   const [mangas, setMangas] = useState([]);
-  const [cargando, setCargando] = useState(true);
-  const { categoriaId } = useParams();
+  const [loading, setLoading] = useState(true);
+  const { categoryId } = useParams();
 
+  //useEffect para traer de BD mangas, todos o por categoria seleccionada mediante ruta
   useEffect(() => {
     const db = getFirestore();
     const queryCollection = collection(db, "mangas");
-    const queryFilter = categoriaId
-      ? query(queryCollection, where("categoria", "==", categoriaId))
+    const queryFilter = categoryId
+      ? query(queryCollection, where("categoria", "==", categoryId))
       : queryCollection;
 
     getDocs(queryFilter)
       .then((resp) =>
         setMangas(resp.docs.map((manga) => ({ id: manga.id, ...manga.data() })))
       )
-      .finally(() => setCargando(false))
+      .finally(() => setLoading(false))
       .catch((error) => console.log(error));
-  }, [categoriaId]);
+  }, [categoryId]);
 
+  //pregunto para saber si estoy en una categoria o estoy en home, si estoy en home muestro el componente de bienvenida
   return (
     <>
-      {categoriaId === undefined ? <Greeting /> : <></>}
-      {cargando ? <Loading /> : <ItemList arrayMangas={mangas} />}
+      {categoryId === undefined ? <Greeting /> : <></>}
+      {loading ? <Loading /> : <ItemList arrayMangas={mangas} />}
     </>
   );
 };

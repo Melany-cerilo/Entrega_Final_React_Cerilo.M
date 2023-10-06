@@ -6,17 +6,18 @@ import ItemCount from "../../ItemCount/ItemCount";
 import "./itemDetail.css";
 
 const ItemDetail = ({ mangaDetail }) => {
-  const [estaEnCart, setEstaEnCart] = useState(true);
+  const [isInCart, setisInCart] = useState(true);
 
-  const { agregarManga } = useCartContext();
+  const { addManga } = useCartContext();
 
-  const add = (contador, stock) => {
-    setEstaEnCart(false);
-    if (agregarManga({ ...mangaDetail, quantity: contador }, stock)) {
+  //función para llamar al agregado del manga y mostrar el resultado ok, o no ok.
+  const add = (counter, stock) => {
+    setisInCart(false);
+    if (addManga({ ...mangaDetail, quantity: counter }, stock)) {
       Swal.fire({
         icon: "success",
         title: `Agregado al carrito: ${mangaDetail.titulo}`,
-        text: `Unidades:    ${contador} `,
+        text: `Unidades:    ${counter} `,
       });
     } else {
       Swal.fire({
@@ -26,7 +27,8 @@ const ItemDetail = ({ mangaDetail }) => {
       });
     }
   };
-
+  //comparo con titulo para ver que el manga exista en BD. si el usuario escribe a mano un id inexistente desde el navegador, le mostrará el error.
+  //si esta todo ok, muestra el detalle.
   return (
     <div className="product-detail">
       {mangaDetail.titulo !== undefined ? (
@@ -54,8 +56,14 @@ const ItemDetail = ({ mangaDetail }) => {
             <p>
               <strong>Stock:</strong> {mangaDetail.stock}
             </p>
-            {estaEnCart ? (
-              <ItemCount valorInicial={1} stock={mangaDetail.stock} add={add} />
+            {isInCart ? (
+              <div className="center-buttons">
+                <ItemCount
+                  initialValue={1}
+                  stock={mangaDetail.stock}
+                  add={add}
+                />
+              </div>
             ) : (
               <>
                 <Link to={"/cart"}>

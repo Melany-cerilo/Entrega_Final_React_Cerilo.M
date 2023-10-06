@@ -24,19 +24,22 @@ const Form = ({ setId }) => {
     validarMail: "",
   });
 
-  const [validacionExitosa, setValidacionExitosa] = useState(false);
+  // creo este flag para marcar validación correcta
+  const [validationOk, setValidationOk] = useState(false);
 
-  const { listaCarrito, vaciarCarrito, precioTotal } = useCartContext();
+  const { cartList, emptyCart, totalPrice } = useCartContext();
 
-  const generarOrden = (evt) => {
+  //función para insertar una orden en db
+  const generateOrder = (evt) => {
     evt.preventDefault();
 
-    //insertar una orden en db
-    const orden = {};
-    orden.comprador = {
+    const order = {};
+    //lleno objeto order con datos del form
+    order.comprador = {
       dataForm,
     };
-    orden.mangas = listaCarrito.map((manga) => {
+    //inserto mangas comprados en order
+    order.mangas = cartList.map((manga) => {
       return {
         id: manga.id,
         título: manga.titulo,
@@ -44,10 +47,12 @@ const Form = ({ setId }) => {
         quantity: manga.quantity,
       };
     });
-    orden.total = precioTotal();
+    //inserto precio total en order
+    order.total = totalPrice();
+    //inserto order en bd
     const queryDB = getFirestore();
     const ordersColecction = collection(queryDB, "ordenes");
-    addDoc(ordersColecction, orden)
+    addDoc(ordersColecction, order)
       .then(({ id }) => setId(id))
       .then((resp) => console.log(resp))
       .catch((err) => console.log(err))
@@ -57,18 +62,19 @@ const Form = ({ setId }) => {
           telefono: "",
           mail: "",
         });
-        vaciarCarrito();
+        emptyCart();
       });
-
-    listaCarrito.forEach((manga) => {
+    //actualizo stock de mangas en bd
+    cartList.forEach((manga) => {
       const queryDB = getFirestore();
       const queryUpdate = doc(queryDB, "mangas", manga.id);
-      const nuevoStock = manga.stock - manga.quantity;
+      const newStock = manga.stock - manga.quantity;
       updateDoc(queryUpdate, {
-        stock: nuevoStock,
+        stock: newStock,
       });
     });
   };
+  //creo función para evento onChange
   const handleOnChange = (evt) => {
     const inputName = evt.target.name;
     const inputValue = evt.target.value;
@@ -76,54 +82,55 @@ const Form = ({ setId }) => {
     setDataForm({
       ...dataForm,
     });
-
-    setValidacionExitosa(true);
-
+    //validaciones del form
+    setValidationOk(true);
     let errorGenProp = "";
 
+    //validación dinamica general para que los campos tengan de 3 a 15 caracteres.
     if (
-      (inputValue.length < 3 || inputValue.length > 15) &&
+      (inputValue.length < 3 || inputValue.length > 20) &&
       inputValue !== ""
     ) {
-      errors[inputName] = `${inputName} debe contener de 3 a 15 caracteres.`;
-      setValidacionExitosa(false);
+      errors[inputName] = `${inputName} debe contener de 3 a 20 caracteres.`;
+      setValidationOk(false);
+      //Marco la propiedad si hubo error para luego no limpiar ese texto en las validaciones especificas
       errorGenProp = inputName;
     } else {
       errors[inputName] = "";
     }
-
+    //validación especifica de teléfono para que solo tenga números
     if (!/^[0-9]+$/.test(dataForm.telefono) && dataForm.telefono !== "") {
       errors.telefono = "El teléfono solo debe contener números.";
-      setValidacionExitosa(false);
+      setValidationOk(false);
     } else if (errorGenProp !== "telefono") {
       errors.telefono = "";
     }
-
+    //validación especifica del validar mail para que sea igual al mail
     if (dataForm.mail !== dataForm.validarMail && dataForm.validarMail !== "") {
       errors.validarMail = "El mail de validacion debe coincidir con el mail.";
-      setValidacionExitosa(false);
+      setValidationOk(false);
     } else if (errorGenProp !== "validarMail") {
       errors.validarMail = "";
     }
-
+    //valido que no esten vacios
     if (
       !dataForm.nombre ||
       !dataForm.telefono ||
       !dataForm.mail ||
       !dataForm.validarMail
     ) {
-      setValidacionExitosa(false);
+      setValidationOk(false);
     }
-
+    //seteo los errores, para luego mostrarlos en pantalla
     setErrors({
       ...errors,
     });
   };
-
+  //muestro el form y solo muestro botón si las validaciones estan correctas
   return (
     <>
       <div className="form-container">
-        <form onSubmit={generarOrden} className="custom-form">
+        <form onSubmit={generateOrder} className="custom-form">
           <div className="input-group">
             <p className="center">
               Completa tus datos para recibir tu ID de orden
@@ -166,7 +173,7 @@ const Form = ({ setId }) => {
             <p className="error">{errors.validarMail}</p>
           </div>
 
-          {validacionExitosa && (
+          {validationOk && (
             <button className="btn btn-success">Generá tu orden</button>
           )}
         </form>

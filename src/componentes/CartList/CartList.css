@@ -1,5 +1,27 @@
-.cart-img {
-  width: 50px;
-  height: 60px;
-  border-radius: 10px;
+@media (min-width: 280px) {
+  .cart-img {
+    width: 25px;
+    height: 30px;
+    border-radius: 10px;
+  }
+  .custom-list {
+    font-size: 10px;
+  }
+}
+@media (min-width: 600px) {
+  .cart-img {
+    width: 50px;
+    height: 60px;
+    border-radius: 10px;
+  }
+  .custom-list {
+    font-size: 18px;
+  }
+}
+@media (min-width: 990px) {
+  .cart-img {
+    width: 60px;
+    height: 80px;
+    border-radius: 10px;
+  }
 }

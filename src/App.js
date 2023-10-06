@@ -18,10 +18,10 @@ function App() {
         <Routes>
           <Route path="/" element={<ItemListContainer />} />
           <Route
-            path="/categoria/:categoriaId"
+            path="/category/:categoryId"
             element={<ItemListContainer />}
           ></Route>
-          <Route path="/detalle/:mangaId" element={<ItemDetailContainer />} />
+          <Route path="/item/:mangaId" element={<ItemDetailContainer />} />
           <Route path="/cart" element={<CartContainer />} />
         </Routes>
       </CartContextProvider>

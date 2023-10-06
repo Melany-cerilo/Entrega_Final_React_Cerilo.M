@@ -7,24 +7,24 @@ import Loading from "../Loading/Loading";
 
 const ItemDetailContainer = () => {
   const [mangaDetail, setMangaDetail] = useState({});
-  const [cargando, setCargando] = useState(true);
+  const [loading, setLoading] = useState(true);
   const { mangaId } = useParams();
-
+  // useEffect para traer el manga que se esta pidiendo mostrar.
   useEffect(() => {
-    const tiempoDeEspera = 2000;
+    const timeOut = 2000;
     const db = getFirestore();
     const queryDocument = doc(db, "mangas", mangaId);
     setTimeout(() => {
       getDoc(queryDocument)
         .then((resp) => ({ id: resp.id, ...resp.data() }))
         .then((resp) => setMangaDetail(resp))
-        .finally(() => setCargando(false))
+        .finally(() => setLoading(false))
         .catch((error) => console.log(error));
-    }, tiempoDeEspera);
+    }, timeOut);
   }, [mangaId]);
 
   return (
-    <>{cargando ? <Loading /> : <ItemDetail mangaDetail={mangaDetail} />}</>
+    <>{loading ? <Loading /> : <ItemDetail mangaDetail={mangaDetail} />}</>
   );
 };
 
