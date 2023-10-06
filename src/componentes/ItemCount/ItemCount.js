@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Swal from "sweetalert2";
 
 const ItemCount = ({ valorInicial, stock, add }) => {
   const [contador, setContador] = useState(valorInicial);
@@ -16,18 +17,27 @@ const ItemCount = ({ valorInicial, stock, add }) => {
     }
   };
   const onAdd = () => {
-    add(contador);
+    if (stock < 1) {
+      Swal.fire({
+        icon: "error",
+        title: `No hay stock`,
+      });
+    } else {
+      add(contador, stock);
+    }
   };
   return (
     <ButtonGroup aria-label="Basic example">
-      <Button variant="secondary" onClick={sumaContador}>
-        + 1
+      <Button variant="light" onClick={sumaContador}>
+        +
       </Button>
-      <Button variant="secondary">{contador}</Button>
-      <Button variant="secondary" onClick={restaContador}>
-        - 1
+      <Button variant="light" disabled>
+        {contador}
       </Button>
-      <Button variant="secondary" onClick={onAdd}>
+      <Button variant="light" onClick={restaContador}>
+        -
+      </Button>
+      <Button variant="light" onClick={onAdd}>
         ADD TO 🛒
       </Button>
     </ButtonGroup>

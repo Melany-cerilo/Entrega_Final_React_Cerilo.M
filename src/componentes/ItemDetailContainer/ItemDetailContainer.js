@@ -1,18 +1,31 @@
 import React, { useEffect, useState } from "react";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useParams } from "react-router-dom";
-import { mockFetch } from "../../utils/mockFetch";
+
 import ItemDetail from "./ItemDetail/ItemDetail";
+import Loading from "../Loading/Loading";
 
 const ItemDetailContainer = () => {
   const [mangaDetail, setMangaDetail] = useState({});
+  const [cargando, setCargando] = useState(true);
   const { mangaId } = useParams();
 
   useEffect(() => {
-    mockFetch(Number(mangaId))
-      .then((resp) => setMangaDetail(resp))
-      .catch((error) => console.log(error));
+    const tiempoDeEspera = 2000;
+    const db = getFirestore();
+    const queryDocument = doc(db, "mangas", mangaId);
+    setTimeout(() => {
+      getDoc(queryDocument)
+        .then((resp) => ({ id: resp.id, ...resp.data() }))
+        .then((resp) => setMangaDetail(resp))
+        .finally(() => setCargando(false))
+        .catch((error) => console.log(error));
+    }, tiempoDeEspera);
   }, [mangaId]);
-  return <ItemDetail mangaDetail={mangaDetail} />;
+
+  return (
+    <>{cargando ? <Loading /> : <ItemDetail mangaDetail={mangaDetail} />}</>
+  );
 };
 
 export default ItemDetailContainer;

@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from "react";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 
-import { mockFetch } from "../../utils/mockFetch";
-import Spinner from "react-bootstrap/Spinner";
 import ItemList from "./ItemList/ItemList";
 import { useParams } from "react-router-dom";
+import Loading from "../Loading/Loading";
+import Greeting from "../Greeting/Greeting";
 
 const ItemListContainer = () => {
   const [mangas, setMangas] = useState([]);
@@ -11,34 +18,24 @@ const ItemListContainer = () => {
   const { categoriaId } = useParams();
 
   useEffect(() => {
-    if (categoriaId) {
-      mockFetch()
-        .then((data) =>
-          setMangas(data.filter((mangas) => categoriaId === mangas.categoria))
-        )
-        .finally(() => setCargando(false))
-        .catch((error) => console.log(error));
-    } else {
-      mockFetch()
-        .then((data) => setMangas(data))
-        .finally(() => setCargando(false))
-        .catch((error) => console.log(error));
-    }
+    const db = getFirestore();
+    const queryCollection = collection(db, "mangas");
+    const queryFilter = categoriaId
+      ? query(queryCollection, where("categoria", "==", categoriaId))
+      : queryCollection;
+
+    getDocs(queryFilter)
+      .then((resp) =>
+        setMangas(resp.docs.map((manga) => ({ id: manga.id, ...manga.data() })))
+      )
+      .finally(() => setCargando(false))
+      .catch((error) => console.log(error));
   }, [categoriaId]);
 
   return (
     <>
-      {cargando ? (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-          <Spinner
-            animation="grow"
-            variant="danger"
-            style={{ width: "100px", height: "100px" }}
-          />
-        </div>
-      ) : (
-        <ItemList arrayMangas={mangas} />
-      )}
+      {categoriaId === undefined ? <Greeting /> : <></>}
+      {cargando ? <Loading /> : <ItemList arrayMangas={mangas} />}
     </>
   );
 };

@@ -1,70 +1,33 @@
-# Getting Started with Create React App
+-Deploy:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+-Readme:
 
-## Available Scripts
+-Creadora del proyecto: Melany Cerilo
+-Nombre de la pagina: MangaMania
 
-In the project directory, you can run:
+-Librerias externas :
+-bootstrap | V5.3.1 | Utilizado para dar estilo a nuestra aplicación.
+-react-bootstrap | V2.8.0 | Proporciona componentes estilizados para la interfaz de usuario.
+-react-router-dom| V6.15.0 | Utilizado para el enrutamiento de la aplicación.
+-sweetAlert | V11.7.31| Proporciona alertas con estilos personalizados.
 
-### `npm start`
+Ejecución del proyecto:
+-Clonar el proyecto
+-cd mel_ecommerce
+-npm i
+-npm start (local)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Funcionalidad:
+-Exploración Sin Fronteras: Desde el momento en que un usuario ingresa a la página principal, se sumerge en un mundo de manga. Aquí puede explorar todos los mangas disponibles en nuestra tienda.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-Navegación por Categorías: Si el usuario tiene preferencias específicas, puede navegar fácilmente por categorías, lo que facilita la búsqueda de los mangas que le interesan.
 
-### `npm test`
+-Detalles de Manga: Al hacer clic en un manga, los usuarios son recibidos con información detallada, incluyendo una imagen atractiva, categoría, descripción, disponibilidad de stock y precio. Esto ayuda a los compradores a tomar decisiones informadas.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-Añadir al Carrito: Para aquellos que deseen comprar, ofrecemos la opción de agregar productos al carrito. Los mangas se pueden agregar siempre y cuando estén en stock, y el usuario puede seleccionar la cantidad deseada.
 
-### `npm run build`
+-Resumen del Carrito: Cuando los usuarios tienen sus compras en el carrito, nuestro sitio les muestra un resumen claro con los productos seleccionados y el total del valor de la compra.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-Generación de Órdenes: Para finalizar la compra, los usuarios deben completar un formulario de pedido. Nuestro sitio se asegura de que todos los campos estén llenos y sean válidos antes de mostrar el botón "Generar Orden".
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-Experiencia de Compra Sencilla: Si todos los datos son correctos, el usuario puede generar una orden de compra con un ID único. Una vez que se genera la orden, el carrito se vacía, y el proceso de compra se completa con éxito.
