@@ -67,13 +67,13 @@ const ItemDetail = ({ mangaDetail }) => {
             ) : (
               <>
                 <Link to={"/cart"}>
-                  <button className=" btn btn-outline-warning">
-                    ir al carrito
+                  <button className=" btn btn-outline-dark">
+                    Ir al carrito
                   </button>
                 </Link>
                 <Link to={"/"}>
-                  <button className=" btn btn-outline-success">
-                    seguir comprando
+                  <button className=" btn btn-outline-dark">
+                    Seguir comprando
                   </button>
                 </Link>
               </>
