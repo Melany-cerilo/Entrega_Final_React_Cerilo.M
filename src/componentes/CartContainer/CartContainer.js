@@ -14,7 +14,7 @@ const CartContainer = () => {
   return (
     <>
       {id !== undefined && (
-        <h3 className="orden-generada">
+        <h3 className="generate-order">
           Tu orden de compra fue generada el ID es: {id}
         </h3>
       )}
