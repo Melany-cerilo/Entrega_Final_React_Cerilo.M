@@ -18,11 +18,11 @@ Ejecución del proyecto:
 -npm start (local)
 
 Funcionalidad:
--Exploración Sin Fronteras: Desde el momento en que un usuario ingresa a la página principal, se sumerge en un mundo de manga. Aquí puede explorar todos los mangas disponibles en nuestra tienda.
+-Ingreso a MangaMania:  Desde el momento en que un usuario ingresa a la página principal, aquí puede explorar todos los mangas disponibles en nuestra tienda.
 
 -Navegación por Categorías: Si el usuario tiene preferencias específicas, puede navegar fácilmente por categorías, lo que facilita la búsqueda de los mangas que le interesan.
 
--Detalles de Manga: Al hacer clic en un manga, los usuarios son recibidos con información detallada, incluyendo una imagen atractiva, categoría, descripción, disponibilidad de stock y precio. Esto ayuda a los compradores a tomar decisiones informadas.
+-Detalles de Manga: Al hacer clic en un manga, los usuarios son recibidos con información detallada, incluyendo una imagen , categoría, descripción, disponibilidad de stock y precio. Esto ayuda a los compradores a tomar decisiones informadas.
 
 -Añadir al Carrito: Para aquellos que deseen comprar, ofrecemos la opción de agregar productos al carrito. Los mangas se pueden agregar siempre y cuando estén en stock, y el usuario puede seleccionar la cantidad deseada.
 
